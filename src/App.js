@@ -1,25 +1,29 @@
-import logo from './logo.svg';
+import {Component} from 'react'
+import SearchForm from './SearchForm'
+import Results from './Results'
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+export default class App extends Component{
+  state = {
+    people: []
+  }
+
+ 
+  render(){
+    const handleGetResults = results => {
+      this.setState({people: results});
+  }
+    return(
+      <div>
+        <header>
+          <h1>Star Wars Search</h1>
+        </header>
+        <main>
+          <SearchForm handleGetResults={handleGetResults}/>
+          <Results results={this.state.people}/>
+        </main>
+      </div>
+    )
+  }
 }
 
-export default App;
